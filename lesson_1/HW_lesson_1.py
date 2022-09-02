@@ -50,4 +50,4 @@ if response.ok:
 j_data_vk = response.json()
 pprint(j_data_vk)
 
-#при запуске на неизвестной VK машине не выдает инфу, результат сохранил в текстовик с именем: Run_from_PyCharm_VK.txt
+#При запуске на неизвестной VK машине не выдает инфу, результат сохранил в текстовик с именем: Run_from_PyCharm_VK.txt
