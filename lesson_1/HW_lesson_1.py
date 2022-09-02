@@ -1,39 +1,32 @@
 import requests
 from pprint import pprint
+import json
 '''
 1. Посмотреть документацию к API GitHub, разобраться как вывести список репозиториев для конкретного 
 пользователя, сохранить JSON-вывод в файле *.json.
 '''
 
-# вариант из документации GitHub https://docs.github.com/en/rest/repos/repos#list-repositories-for-a-user
-url = 'https://api.github.com/user/repos'
-headers = {'Accept': 'application/vnd.github+json', 'Authorization': 'Bearer  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'}
 
+url = 'https://api.github.com/users/ZoooMX/repos'
 response = requests.get(url)
 if response.ok:
     pass
-response = requests.get(url, headers=headers)
 
-j_data_1 = response.json()
+j_data = response.json()
 
+with open('data_repo.json', 'w', encoding='UTF-8') as file_json:
+    json.dump(j_data, file_json)
 
-# вариант, который нашел на просторах
-url = 'https://api.github.com/user/repos'
-username = 'ZoooMX'
-token = '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'
-response = requests.get(url)
-if response.ok:
-    pass
-response = requests.get(url, auth=(username, token))
+name = 'data_repo.json'
+with open(name) as file_json:
+    j_date = json.load(file_json)
 
-j_data_2 = response.json()
-print(j_data_1 == j_data_2) # проверка на соответствие друг другу двух способов
+pprint(j_date) # проверка содержимого файла
 
-pprint(j_data_2)
 
 '''
-2. Изучить список открытых API (https://www.programmableweb.com/category/all/apis). 
-Найти среди них любое, требующее авторизацию (любого типа). Выполнить запросы к нему, пройдя авторизацию. 
+2. Изучить список открытых API (https://www.programmableweb.com/category/all/apis).
+Найти среди них любое, требующее авторизацию (любого типа). Выполнить запросы к нему, пройдя авторизацию.
 Ответ сервера записать в файл.
 ''' #на сайте велись тех.работы, пошел работать с ВК
 
@@ -50,4 +43,4 @@ if response.ok:
 j_data_vk = response.json()
 pprint(j_data_vk)
 
-#при запуске на неизвестной VK машине не выдает инфу, результат сохранил в текстовик с именем: Run_from_PyCharm_VK.txt
+#При запуске на неизвестной VK машине не выдает инфу, результат сохранил в текстовик с именем: Run_from_PyCharm_VK.txt
